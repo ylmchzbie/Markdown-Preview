@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { marked } from 'marked'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 // Configure marked to NOT break on single line breaks
 marked.setOptions({
-  breaks: false, // Only double line breaks create new paragraphs
+  breaks: true, // Single line breaks create <br>
 })
 
+// Default markdown content
 const defaultMarkdown = `# Heading 1
 
 ## Heading 2
@@ -39,9 +38,11 @@ function App() {
 
   return (
     <>
-      <div>
+      <h1>Markdown Previewer</h1>
+      <div className='relative w-full min-w-[200px] min-h-[200px]'>
         <textarea
           id='editor'
+          className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
           value={markdown}
           onChange={e => setMarkdown(e.target.value)}
         ></textarea>
